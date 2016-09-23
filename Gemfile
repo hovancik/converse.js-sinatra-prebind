@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 gem 'sinatra'
+gem 'rack-ssl'
 # server
 gem 'puma'
 # ruby xmpp library
