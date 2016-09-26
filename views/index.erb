@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  </head>
+  <body>
+    <% if session[:rid] %>
+      <form action="/logout" method="POST">
+        <input name="_method" type="hidden" value="delete" />
+        <input type="submit" value="Logout">
+      </form>
+    <% else %>
+      <form action="/login" method="POST">
+        <input type="text" name="user" autofocus="true">
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+      </form>
+    <% end %>
+  </body>
+</html>

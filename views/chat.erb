@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/css/converse.min.css">
+  </head>
+  <body>
+    <form action="/logout" method="POST">
+      <input name="_method" type="hidden" value="delete" />
+      <input type="submit" value="Logout">
+    </form>
+  </body>
+  <script src="https://cdn.conversejs.org/dist/converse.min.js"></script>
+  <script>
+    require(['converse'], function (converse) {
+      var request = new XMLHttpRequest();
+      request.open('GET', '/prebind', true);
+
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          var data = JSON.parse(request.responseText);
+          converse.initialize({
+            auto_list_rooms: false,
+            auto_subscribe: false,
+            bosh_service_url: data.bosh_service_url,
+            hide_muc_server: false,
+            i18n: locales.en,
+            prebind: true,
+            jid: data.jid,
+            sid: data.sid,
+            rid: data.rid,
+            allow_logout: false,
+            allow_muc: false,
+            allow_otr: true,
+            allow_registration:false,
+            show_controlbox_by_default: false,
+            xhr_user_search: false
+          })
+
+        } else {
+          // TODO: We reached our target server, but it returned an error
+        }
+      };
+
+      request.onerror = function() {
+        // TODO: There was a connection error of some sort
+      };
+
+      request.send()
+    });
+  </script>
+</html>

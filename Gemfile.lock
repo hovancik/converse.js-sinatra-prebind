@@ -38,6 +38,8 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-ssl (1.4.1)
+      rack
     rainbow (2.1.0)
     rubocop (0.39.0)
       parser (>= 2.3.0.7, < 3.0)
@@ -70,6 +72,7 @@ DEPENDENCIES
   pronto-rubocop
   pry
   puma
+  rack-ssl
   sinatra
   xmpp4r
 
